@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Available Properties</h1>
+    <a href="{{ url_for('add_property') }}">Add New Property</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Property Name</th>
+                <th>Location</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for property in properties %}
+            <tr>
+                <td>{{ property.name }}</td>
+                <td>{{ property.location }}</td>
+                <td>${{ property.price }}</td>
+                <td><a href="{{ url_for('book_property', property_id=property.id) }}">Book</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
